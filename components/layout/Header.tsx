@@ -14,9 +14,9 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold">DeepL API Demo</h1>
+              <h1 className="text-3xl font-bold">DeepL Customizations Showcase</h1>
               <p className="text-blue-200 mt-1">
-                Style Rules & Custom Instructions Showcase
+                Try out Style Rules & Custom Instructions in our API!
               </p>
             </div>
             <Button
