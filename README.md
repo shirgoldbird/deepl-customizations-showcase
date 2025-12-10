@@ -60,13 +60,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 4. Configure API Keys
+### 3. Configure API Keys
 
 Click the **Settings** button in the header to configure:
 - DeepL API Key
 - OpenAI Proxy URL
 
-API keys are stored securely in your browser's localStorage.
+API keys are stored in your browser's localStorage.
 
 ## Usage Guide
 
