@@ -47,8 +47,14 @@ export function useDiceRoll(proxyUrl: string) {
       // Gracefully revert to default instructions on error
       setGeneratedInstructions(DEFAULT_INSTRUCTIONS);
       const errorMessage = (error as Error).message || "Unknown error";
+
+      // Check if it's a fetch error and URL contains deepl.dev
+      const isFetchError = errorMessage.toLowerCase().includes("fetch");
+      const isDeepLDevUrl = proxyUrl.includes("deepl.dev");
+      const vpnWarning = isFetchError && isDeepLDevUrl ? " Are you sure you're on VPN?" : "";
+
       toast.error(
-        `Failed to generate instructions: ${errorMessage}. Showing defaults.`
+        `Failed to generate instructions: ${errorMessage}.${vpnWarning} Showing defaults.`
       );
       console.error("Error generating instructions:", error);
     } finally {

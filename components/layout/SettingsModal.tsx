@@ -41,6 +41,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<SettingsFormData>({
     resolver: zodResolver(settingsSchema),
     defaultValues: {
@@ -48,6 +49,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
       openaiProxyUrl: config?.openaiProxyUrl || "",
     },
   });
+
+  const openaiProxyUrl = watch("openaiProxyUrl");
 
   useEffect(() => {
     if (config) {
@@ -134,6 +137,11 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             {errors.openaiProxyUrl && (
               <p className="text-sm text-destructive">
                 {errors.openaiProxyUrl.message}
+              </p>
+            )}
+            {openaiProxyUrl?.includes("deepl.dev") && (
+              <p className="text-sm text-amber-600 dark:text-amber-500 font-medium">
+                ⚠️ Are you sure you&apos;re on VPN?
               </p>
             )}
             <p className="text-xs text-muted-foreground">
