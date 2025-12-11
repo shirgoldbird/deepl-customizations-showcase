@@ -6,10 +6,17 @@ import type { CategorizedInstruction } from "@/types/api";
 
 export type SpiceLevel = "normal" | "spicy" | "nuclear";
 
+const DEFAULT_INSTRUCTIONS: CategorizedInstruction[] = [
+  { instruction: "Talk like a pirate!", category: "fun" },
+  { instruction: "angry mode >:(", category: "fun" },
+  { instruction: "Use simple, straightforward terminology.", category: "business" },
+  { instruction: "Format as an email.", category: "business" },
+];
+
 export function useDiceRoll(proxyUrl: string) {
   const [isRolling, setIsRolling] = useState(false);
   const [generatedInstructions, setGeneratedInstructions] = useState<CategorizedInstruction[]>(
-    []
+    DEFAULT_INSTRUCTIONS
   );
   const [selectedInstructions, setSelectedInstructions] = useState<string[]>(
     []
