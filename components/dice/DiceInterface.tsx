@@ -66,9 +66,6 @@ export function DiceInterface({ onInstructionsSelected }: DiceInterfaceProps) {
           <Dices className="h-6 w-6 text-deepl-accent" />
           Custom Instructions Generator
         </CardTitle>
-        <CardDescription>
-          Roll the dice to generate 2 fun and 2 business custom instructions for your translations
-        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Manual Custom Instructions Input */}
@@ -251,10 +248,6 @@ export function DiceInterface({ onInstructionsSelected }: DiceInterfaceProps) {
             </>
           ) : (
             <>
-              <p className="text-sm text-muted-foreground">
-                Roll the dice to generate AI suggestions:
-              </p>
-
               {/* Fun Instructions Placeholders */}
               <div className="space-y-2">
                 <h3 className="text-sm font-semibold text-deepl-accent flex items-center gap-2">
