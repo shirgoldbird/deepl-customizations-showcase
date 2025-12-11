@@ -68,7 +68,16 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         showDebugLogs,
         lastUpdated: new Date().toISOString(),
       });
-      toast.success("Settings saved successfully");
+
+      // Check if URL ends with deepl.dev and show VPN warning
+      if (data.openaiProxyUrl.includes("deepl.dev")) {
+        toast.warning("VPN required: You'll need to be on VPN to use this proxy", {
+          duration: 5000,
+        });
+      } else {
+        toast.success("Settings saved successfully");
+      }
+
       onClose();
     } catch (error) {
       toast.error("Failed to save settings");
@@ -128,7 +137,15 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               </p>
             )}
             <p className="text-xs text-muted-foreground">
-              Custom OpenAI proxy endpoint for generating instructions
+              DeepL employees:{" "}
+              <a
+                href="https://deepl.atlassian.net/wiki/spaces/OPS/pages/100893069/OpenAI+API+Proxy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-deepl-accent hover:underline"
+              >
+                find the URL here
+              </a>
             </p>
           </div>
 
