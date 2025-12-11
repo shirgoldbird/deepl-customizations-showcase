@@ -1,6 +1,7 @@
 import type {
   GenerateInstructionsRequest,
   GenerateInstructionsResponse,
+  CategorizedInstruction,
   ApiError,
 } from "@/types/api";
 
@@ -118,10 +119,10 @@ Return ONLY a valid JSON array of objects with "category" and "instruction" fiel
     }
 
     // Ensure all items have category and instruction fields
-    const validInstructions = instructions
+    const validInstructions: CategorizedInstruction[] = instructions
       .filter((item) => item.category && item.instruction)
       .map((item) => ({
-        category: item.category.toLowerCase() === "fun" ? "fun" : "business",
+        category: (item.category.toLowerCase() === "fun" ? "fun" : "business") as "fun" | "business",
         instruction:
           item.instruction.length > request.max_length
             ? item.instruction.substring(0, request.max_length - 3) + "..."
