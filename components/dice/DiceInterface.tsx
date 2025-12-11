@@ -150,6 +150,7 @@ export function DiceInterface({ onInstructionsSelected }: DiceInterfaceProps) {
         {/* Dice Roll Section */}
         <div className="flex gap-2">
           <motion.div
+            key={isRolling ? "rolling" : "idle"}
             className="w-full"
             animate={
               isRolling
@@ -157,7 +158,10 @@ export function DiceInterface({ onInstructionsSelected }: DiceInterfaceProps) {
                     rotateY: [0, 360, 720, 1080],
                     scale: [1, 1.2, 1],
                   }
-                : {}
+                : {
+                    rotateY: 0,
+                    scale: 1,
+                  }
             }
             transition={{ duration: 1.5, ease: "easeInOut" }}
           >

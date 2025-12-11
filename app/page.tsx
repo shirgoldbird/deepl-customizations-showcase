@@ -130,18 +130,20 @@ export default function Home() {
 
             {/* Translation Input and Output - Side by Side */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Translation Form */}
-              <TranslationForm
-                onTranslate={handleTranslate}
-                isLoading={isLoading}
-                onFormChange={(text, sourceLang, targetLang) => {
-                  setCurrentText(text);
-                  setCurrentSourceLang(sourceLang);
-                  setCurrentTargetLang(targetLang);
-                }}
-              />
+              {/* Left Column: Translation Form + Baseline */}
+              <div className="space-y-6">
+                <TranslationForm
+                  onTranslate={handleTranslate}
+                  isLoading={isLoading}
+                  onFormChange={(text, sourceLang, targetLang) => {
+                    setCurrentText(text);
+                    setCurrentSourceLang(sourceLang);
+                    setCurrentTargetLang(targetLang);
+                  }}
+                />
+              </div>
 
-              {/* Translation Results - Stacked */}
+              {/* Right Column: Custom Results */}
               <div className="space-y-6">
                 <TranslationResults
                   baseline={baselineResult}

@@ -44,8 +44,11 @@ export function useDiceRoll(proxyUrl: string) {
       setGeneratedInstructions(response.instructions);
       toast.success("Custom instructions generated!");
     } catch (error) {
+      // Gracefully revert to default instructions on error
+      setGeneratedInstructions(DEFAULT_INSTRUCTIONS);
+      const errorMessage = (error as Error).message || "Unknown error";
       toast.error(
-        `Failed to generate instructions: ${(error as Error).message}`
+        `Failed to generate instructions: ${errorMessage}. Showing defaults.`
       );
       console.error("Error generating instructions:", error);
     } finally {
