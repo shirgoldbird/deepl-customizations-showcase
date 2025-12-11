@@ -57,14 +57,14 @@ export function ApiDebugPanel({
                       {JSON.stringify(baselineRequest, null, 2)}
                     </pre>
                   </div>
-                  {baselineResponse && (
+                  {baselineResponse ? (
                     <div>
                       <p className="text-xs text-muted-foreground mb-1">Response:</p>
                       <pre className="text-xs bg-muted p-3 rounded-lg overflow-auto max-h-[200px]">
                         {JSON.stringify(baselineResponse, null, 2)}
                       </pre>
                     </div>
-                  )}
+                  ) : null}
                 </div>
               </div>
 
@@ -78,14 +78,14 @@ export function ApiDebugPanel({
                       {JSON.stringify(customRequest, null, 2)}
                     </pre>
                   </div>
-                  {customResponse && (
+                  {customResponse ? (
                     <div>
                       <p className="text-xs text-muted-foreground mb-1">Response:</p>
                       <pre className="text-xs bg-muted p-3 rounded-lg overflow-auto max-h-[200px]">
                         {JSON.stringify(customResponse, null, 2)}
                       </pre>
                     </div>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
