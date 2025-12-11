@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, CheckCircle2, Eye, EyeOff, Code2 } from "lucide-react";
+import { Eye, EyeOff, Code2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,30 +28,12 @@ export function TranslationResults({
   baselineRequest,
   customRequest,
 }: TranslationResultsProps) {
-  const [copiedBaseline, setCopiedBaseline] = useState(false);
-  const [copiedCustom, setCopiedCustom] = useState(false);
   const [showDiff, setShowDiff] = useState(false);
 
   // Reset diff view when new results come in
   useEffect(() => {
     setShowDiff(false);
   }, [custom?.text]);
-
-  const copyToClipboard = async (text: string, isBaseline: boolean) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      if (isBaseline) {
-        setCopiedBaseline(true);
-        setTimeout(() => setCopiedBaseline(false), 2000);
-      } else {
-        setCopiedCustom(true);
-        setTimeout(() => setCopiedCustom(false), 2000);
-      }
-      toast.success("Copied to clipboard");
-    } catch (error) {
-      toast.error("Failed to copy");
-    }
-  };
 
   const renderDiffText = (baselineText: string, customText: string) => {
     const diff = Diff.diffWords(baselineText, customText);
@@ -180,24 +162,6 @@ export function TranslationResults({
                       <p className="text-sm whitespace-pre-wrap">{custom.text}</p>
                     )}
                   </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => copyToClipboard(custom.text, false)}
-                    className="w-full border-deepl-accent/50 hover:bg-deepl-accent/10"
-                  >
-                    {copiedCustom ? (
-                      <>
-                        <CheckCircle2 className="h-4 w-4 mr-2" />
-                        Copied!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-4 w-4 mr-2" />
-                        Copy
-                      </>
-                    )}
-                  </Button>
                 </>
               )}
             </>
@@ -238,24 +202,6 @@ export function TranslationResults({
                   <div className="p-4 bg-muted/50 rounded-lg">
                     <p className="text-sm whitespace-pre-wrap">{baseline.text}</p>
                   </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => copyToClipboard(baseline.text, true)}
-                    className="w-full"
-                  >
-                    {copiedBaseline ? (
-                      <>
-                        <CheckCircle2 className="h-4 w-4 mr-2" />
-                        Copied!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-4 w-4 mr-2" />
-                        Copy
-                      </>
-                    )}
-                  </Button>
                 </>
               )}
             </>
